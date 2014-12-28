@@ -1,0 +1,7 @@
+A bot to notify the MediaWiki core team when the @SwiftOnSecurity
+twitter account tweets something.
+
+Runs on Python 2 because the python-twitter library doesn't support
+3 :(
+
+Released under CC-0 license.
