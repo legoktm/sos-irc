@@ -2,11 +2,15 @@
 from __future__ import print_function
 
 import json
+import os
 import requests
 import twitter
 import ur1
 
-with open('private.json', 'r') as f:
+fname = os.path.expanduser('~/.sos-irc.json')
+if not os.path.exists(fname):
+    raise Exception('Error: %s does not exist.' % fname)
+with open(fname, 'r') as f:
     conf = json.load(f)
 
 ircnotifier_key = conf.pop('ircnotifier_key')
