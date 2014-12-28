@@ -27,13 +27,17 @@ def send(msg):
     pass
 
 last_id = None
-statuses = api.GetUserTimeline(screen_name='swiftonsecurity', exclude_replies=True, since_id=last_id)
-for status in statuses:
-    print(status.id)
-    if status.id > last_id:
-        last_id = status.id
-    send(
-        status.text.replace('\n', ' ').replace('\r', ' ')
-        + ' '.join(u.url for u in status.urls)
-        + ' - ' + build_url(status.id)
-    )
+first_run = True
+while True:
+    statuses = api.GetUserTimeline(screen_name='swiftonsecurity', exclude_replies=True, since_id=last_id)
+    for status in statuses:
+        print(status.id)
+        if status.id > last_id:
+            last_id = status.id
+        if not first_run:
+            send(
+                status.text.replace('\n', ' ').replace('\r', ' ')
+                + ' '.join(u.url for u in status.urls)
+                + ' - ' + build_url(status.id)
+            )
+    first_run = True
