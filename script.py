@@ -4,6 +4,7 @@ from __future__ import print_function
 import json
 import os
 import requests
+import time
 import twitter
 import ur1
 
@@ -45,3 +46,4 @@ while True:
                 + ' - ' + build_url(status.id)
             )
     first_run = True
+    time.sleep(60)
